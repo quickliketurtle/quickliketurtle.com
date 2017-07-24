@@ -3,5 +3,7 @@
 return [
     'baseUrl' => '',
     'production' => false,
-    'collections' => [],
+    'collections' => [
+        'posts',
+    ],
 ];

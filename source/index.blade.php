@@ -1,5 +1,5 @@
 @extends('_layouts.master')
 
-@section('body')
+@section('content')
 <h1>Hello world!</h1>
 @endsection
