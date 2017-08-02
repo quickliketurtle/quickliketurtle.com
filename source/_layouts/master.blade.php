@@ -7,27 +7,28 @@
         <link rel="stylesheet" href="/css/app.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
     </head>
-    <body class="border-t border-primary flex-col full-height">
-        <nav class="navbar flex-none">
-            <div class="container">
-                <div class="navbar-content text-dark-muted p-sx-x-4">
-                    <div>
-                        quickliketurtle.com
-                    </div>
-                </div>
-            </div>
+    <body>
+        <nav class="navbar">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="http://bulma.io">
+              <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+            </a>
+          </div>
         </nav>
 
-        <div class="flex-fit">
+        <div class="section">
             <div class="container">
                 @yield('content')
             </div>
         </div>
 
-        <footer class="bg-primary text-center p-xs-y-6 p-xs-x-4 text-light-muted text-sm flex-none">
-            <p>© 2017 <a href="http://quickliketurtle.com" class="link-light-muted">quickliketurtle</a></p>
+        <footer class="footer">
+          <div class="container">
+            <div class="content has-text-centered">
+                <p>© 2017 <a href="http://quickliketurtle.com">Jeff Finley</a></p>
+            </div>
+          </div>
         </footer>
-        </div>
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
