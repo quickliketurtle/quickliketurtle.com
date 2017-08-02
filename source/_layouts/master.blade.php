@@ -6,17 +6,31 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <link rel="stylesheet" href="/css/app.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-    <body>
+    <body class="flex-column-full">
         <nav class="navbar">
           <div class="navbar-brand">
-            <a class="navbar-item" href="http://bulma.io">
-              <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+            <a class="navbar-item" href="http://quickliketurtle.com">
+              quickliketurtle.com
             </a>
+          </div>
+          <div class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item" href="/">
+                  Home
+                </a>
+                <a class="navbar-item" href="/posts">
+                    Blog
+                </a>
+                <a class="navbar-item" href="/contact">
+                    Contact
+                </a>
+            </div>
           </div>
         </nav>
 
-        <div class="section">
+        <div class="section flex-1">
             <div class="container">
                 @yield('content')
             </div>
@@ -26,6 +40,14 @@
           <div class="container">
             <div class="content has-text-centered">
                 <p>© 2017 <a href="http://quickliketurtle.com">Jeff Finley</a></p>
+                <p>
+                  <a class="icon" href="https://github.com/quickliketurtle">
+                    <i class="fa fa-github"></i>
+                  </a>
+                  <a class="icon" href="https://twitter.com/quickliketurtle">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </p>
             </div>
           </div>
         </footer>

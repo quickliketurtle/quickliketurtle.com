@@ -5062,7 +5062,7 @@ a.nav-item:not(.button).is-tab.is-active {
 }
 
 .navbar {
-  background-color: white;
+  background-color: #eee;
   min-height: 3.25rem;
   position: relative;
 }
@@ -8191,6 +8191,20 @@ label.panel-block:hover {
 .footer {
   background-color: whitesmoke;
   padding: 3rem 1.5rem 6rem;
+}
+
+.flex-column-full {
+  display: -webkit-box;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+}
+
+.flex-1 {
+  -webkit-box-flex: 1;
+  flex: 1;
 }
 
 /*# sourceMappingURL=app.css.map */

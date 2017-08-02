@@ -1,10 +1,10 @@
 @extends('_layouts.master')
 
 @section('content')
-    <h1>{{ $page->title }}</h1>
-    <p>by {{ $page->author }}</p>
+    <h1 class="title">{{ $page->title }}</h1>
+    <p class="subtitle">by {{ $page->author }}</p>
 
-    <div class="posts-page">
+    <div class="content">
         @yield('postContent')
     </div>
 @endsection
