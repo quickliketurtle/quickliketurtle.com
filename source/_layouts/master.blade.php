@@ -5,10 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <link rel="stylesheet" href="/css/app.css">
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+        {{-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> --}}
+        <link rel="stylesheet" href="/css/tomorrow-night.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-    <body class="flex-column-full">
+    <body class="is-flex-column-full">
         <nav class="navbar">
           <div class="navbar-brand">
             <a class="navbar-item" href="http://quickliketurtle.com">
@@ -18,7 +19,7 @@
           <div class="navbar-menu">
             <div class="navbar-end">
                 <a class="navbar-item" href="/">
-                  Home
+                    Home
                 </a>
                 <a class="navbar-item" href="/posts">
                     Blog
@@ -30,7 +31,7 @@
           </div>
         </nav>
 
-        <div class="section flex-1">
+        <div class="section is-flex-1">
             <div class="container">
                 @yield('content')
             </div>
@@ -38,8 +39,8 @@
 
         <footer class="footer">
           <div class="container">
-            <div class="content has-text-centered">
-                <p>© 2017 <a href="http://quickliketurtle.com">Jeff Finley</a></p>
+            <div class="content has-text-centered has-text-white">
+                <p>© 2017 <a href="http://quickliketurtle.com"><strong>Jeff Finley<strong></a></p>
                 <p>
                   <a class="icon" href="https://github.com/quickliketurtle">
                     <i class="fa fa-github"></i>

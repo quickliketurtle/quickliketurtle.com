@@ -1,13 +1,38 @@
 @import "../../../node_modules/bulma/sass/utilities/initial-variables"
 
-$navbar-background-color: #eee
+// Project Colors
+$primary: #586F7C
+$white: #F4F4F9
+$background: #DBD9DB
 
+// Override Bulma variables
+$navbar-background-color: $primary
+$footer-background-color: $primary
+$navbar-item-color: $white
+
+// Import Bulma
 @import "../../../node_modules/bulma/bulma.sass"
 
-.flex-column-full
+// Project CSS
+.is-flex-column-full
     display: flex
     min-height: 100vh
     flex-direction: column
 
-.flex-1
-    flex: 1;
+.is-flex-1
+    flex: 1
+
+.has-text-white a,strong
+    color: $white
+
+.container .card
+    margin-bottom: 1.25rem;
+
+pre
+  background: #1d1f21;
+
+.content pre code
+    border: none
+
+.card
+    background: $background
