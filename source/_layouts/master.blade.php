@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <link rel="stylesheet" href="/css/app.css">
-        {{-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> --}}
         <link rel="stylesheet" href="/css/tomorrow-night.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
@@ -13,7 +12,7 @@
         <nav class="navbar">
           <div class="navbar-brand">
             <a class="navbar-item" href="http://quickliketurtle.com">
-              quickliketurtle.com
+              QUICKLIKETURTLE.COM
             </a>
           </div>
           <div class="navbar-menu">

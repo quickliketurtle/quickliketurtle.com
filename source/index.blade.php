@@ -1,16 +1,11 @@
 @extends('_layouts.master')
 
 @section('content')
-<section class="hero is-">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Jeff Finley
-      </h1>
-      <h2 class="subtitle">
-        I do things and stuff
-      </h2>
+  <section>
+    <div class="content has-text-centered">
+      <img class="image is-centered is-rounded is-128x128" src="https://www.gravatar.com/avatar/82be8137d900e064157a862bdba0fb97?s=200" alt="">
+      <p class="title">Jeff Finley</p>
+      <p class="subtitle">I do things and stuff</p>
     </div>
-  </div>
-</section>
+  </section>
 @endsection

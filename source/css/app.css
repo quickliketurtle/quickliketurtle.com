@@ -8227,4 +8227,13 @@ pre {
   background: #DBD9DB;
 }
 
+.is-rounded {
+  border-radius: 50%;
+  border: 5px solid #eee;
+}
+
+.image.is-centered {
+  margin: auto;
+}
+
 /*# sourceMappingURL=app.css.map */
