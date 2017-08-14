@@ -27,11 +27,9 @@
           </div>
         </nav>
 
-        <header>
-            <div class="container has-text-centered">
-                <img class="image is-centered is-rounded is-128x128" src="https://www.gravatar.com/avatar/82be8137d900e064157a862bdba0fb97?s=200" alt="">
-                <p class="title">Jeff Finley</p>
-            </div>
+        <header class="container has-text-centered">
+            <img class="image is-centered is-rounded is-128x128" src="https://www.gravatar.com/avatar/82be8137d900e064157a862bdba0fb97?s=200" alt="">
+            <h1 class="title">Jeff Finley</h1>
         </header>
 
         <div class="section is-flex-1">

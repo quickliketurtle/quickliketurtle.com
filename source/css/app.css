@@ -8203,7 +8203,10 @@ nav {
 
 header {
   margin-top: 1rem;
-  margin-bottom: 1rem;
+}
+
+header > h1 {
+  margin-bottom: 0;
 }
 
 footer {
@@ -8269,6 +8272,10 @@ pre {
 
 .image.is-centered {
   margin: auto;
+}
+
+img {
+  margin-bottom: 1rem !important;
 }
 
 /*# sourceMappingURL=app.css.map */
