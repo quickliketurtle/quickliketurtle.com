@@ -18,17 +18,21 @@
           <div class="navbar-menu">
             <div class="navbar-end">
                 <a class="navbar-item" href="/">
-                    Home
-                </a>
-                <a class="navbar-item" href="/posts">
                     Blog
                 </a>
-                <a class="navbar-item" href="/contact">
-                    Contact
+                <a class="navbar-item" href="/about">
+                    About
                 </a>
             </div>
           </div>
         </nav>
+
+        <header>
+            <div class="container has-text-centered">
+                <img class="image is-centered is-rounded is-128x128" src="https://www.gravatar.com/avatar/82be8137d900e064157a862bdba0fb97?s=200" alt="">
+                <p class="title">Jeff Finley</p>
+            </div>
+        </header>
 
         <div class="section is-flex-1">
             <div class="container">
