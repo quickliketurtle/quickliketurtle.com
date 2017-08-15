@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" full-height>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="/css/app.css">
+        <link rel="stylesheet" href="/css/tomorrow-night.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body class="is-flex-column-full">
+        <nav class="navbar">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="http://quickliketurtle.com">
+              QUICKLIKETURTLE.COM
+            </a>
+          </div>
+          <div class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item" href="/">
+                    Blog
+                </a>
+                <a class="navbar-item" href="/about">
+                    About
+                </a>
+            </div>
+          </div>
+        </nav>
+
+        <header class="has-text-centered">
+            <img class="image is-centered is-rounded is-128x128" src="https://www.gravatar.com/avatar/82be8137d900e064157a862bdba0fb97?s=200" alt="">
+            <h1 class="title">Jeff Finley</h1>
+            <p class="m-b-0">
+              <a class="icon" href="https://github.com/quickliketurtle">
+                <i class="fa fa-github"></i>
+              </a>
+              <a class="icon" href="https://twitter.com/quickliketurtle">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </p>
+        </header>
+
+        <div class="section is-flex-1">
+            <div class="container">
+                    <div class="card">
+        <div class="card-content">
+            <p class="title">
+                Creating a Global .gitignore
+            </p>
+            <p class="subtitle">
+                By Jeff Finley
+            </p>
+            <div class="content">
+                <p>I primarilly used Sublime Text as my editor of choice, but when I hack on a open source project that I am not familiar with, I reach for PHPStorm so I can more easily explore and jump around the code base. Since this has been pretty infrequent, I've been caught with the .idea directory in a commit/pr a few times.</p>
+<p>I could just not commit it of course. Or I could add it to the projects .gitignore file, but then I have to commit that change and as it is unrealted to the current work I'd create a new commit/pr for just that change, then wait for the maintainer to merge it then update from the upstream/master, etc... No Fun! I though there must be a better way, so i googled it and what do you know, there is.</p>
+<p>Enter the global .gitignore.</p>
+<p>My search lead me right to the github help page that describes making a global .gitignore file.
+<a href="https://help.github.com/articles/ignoring-files/#create-a-global-gitignore">https://help.github.com/articles/ignoring-files/#create-a-global-gitignore</a></p>
+<p>There are 2 simple steps:</p>
+<ol>
+<li>Create a file. I went with the recommendation of ~/.gitignore_global</li>
+<li>Run command <code>git config --global core.excludesfile ~/.gitignore_global</code></li>
+</ol>
+<p>That's it.</p>
+<p>As for what to put in the file github has a repo with all sorts of good options. Rather than looking at the example linked in the help page: <a href="https://gist.github.com/octocat/9257657">https://gist.github.com/octocat/9257657</a>, I suggest looking at the repo they have with all sorts of templates: <a href="https://github.com/github/gitignore">https://github.com/github/gitignore</a>.</p>
+<p>I started right with <code>.idea/</code> and then added the items from the macOS.gitignore template.</p>
+<p>While this solves my specific use case, I'd still recommend adding all items to the projects .gitignore that are appropriate for your project/team.</p>            </div>
+        </div>
+    </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+          <div class="container">
+            <div class="content has-text-centered has-text-white">
+                <p>© 2017 <a href="http://quickliketurtle.com"><strong>Jeff Finley<strong></a></p>
+            </div>
+          </div>
+        </footer>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </body>
+</html>
