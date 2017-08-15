@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" full-height>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="/css/app.css">
+        <link rel="stylesheet" href="/css/tomorrow-night.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body class="is-flex-column-full">
+        <nav class="navbar">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="http://quickliketurtle.com">
+              QUICKLIKETURTLE.COM
+            </a>
+          </div>
+          <div class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item" href="/">
+                    Blog
+                </a>
+                <a class="navbar-item" href="/about">
+                    About
+                </a>
+            </div>
+          </div>
+        </nav>
+
+        <header class="has-text-centered">
+            <img class="image is-centered is-rounded is-128x128" src="https://www.gravatar.com/avatar/82be8137d900e064157a862bdba0fb97?s=200" alt="">
+            <h1 class="title">Jeff Finley</h1>
+            <p class="m-b-0">
+              <a class="icon" href="https://github.com/quickliketurtle">
+                <i class="fa fa-github"></i>
+              </a>
+              <a class="icon" href="https://twitter.com/quickliketurtle">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </p>
+        </header>
+
+        <div class="section is-flex-1">
+            <div class="container">
+                        <div class="card">
+        <div class="card-content">
+            <p class="title">
+                <a href="/posts/how-to-use-tinker-outside-laravel">How to use Tinker outside Laravel</a>
+            </p>
+            <p class="subtitle">
+                By Jeff Finley
+            </p>
+            <div class="content">
+                <p>Today I found myself wanting to quickly create an md5 hash of my email to use with gravatar. I've done this before using an interactive php shell, but that usually take a try or two for reasons that are entirely my fault.</p>
+<pre><code class="language-php"> &gt;php
+ md5('a');</code></pre>
+<p>Oh right just running php doesn't open the interactive shell.</p>
+<pre><code class="language-php">&gt;php -i
+phpinfo()
+PHP Version =&gt; 7.1.2</code></pre>
+<p>Oh right, <code>php -i</code> doesn't open the interactive shell either.</p>
+<pre><code class="language-php">&gt; php -a</code></pre>
+<p>Great, now were talking.</p>
+<pre><code class="language-php">php &gt; md5('a')
+// Nothing, maybe I need a semicolon
+md5('a');
+// PHP Parse error... Oh it remembered the first command also, I'll try again.
+php &gt; md5('a');
+// Nothing. Oh, i guess i need to use echo.
+php &gt; echo md5('a');
+0cc175b9c0f1b6a831c399e269772661
+// Great that worked.</code></pre>
+<p>Well that wasn't fun. So the next time i went to do this I thought I'll just google 'php repl' and see what I get.</p>
+<p>The first result was repl.it/languages/php. Enter some code on the left and it shows console output on the right. I still got an error when leaving off the semicolon but the command worked without <code>echo</code>. I guess it assumed i'd want to see the result of a command. Good assumption.</p>
+<p>This is a good option, and can be used without installing anything.</p>
+<p>From using Laravel, I'm used to using Tinker as a relp so I thought maybe I'll see if I can use Tinker outside of Laravel. A quick google didn't really return anything useful.  Then I took a quick look at <a href="https://github.com/mattstauffer/Torch">https://github.com/mattstauffer/Torch</a> and didn't see it there. For those who don't know Torch has example of using Illuminate components outside Laravel.</p>
+<p>Lets give this a go. I set up a new project and pulled in Tinker.</p>
+<pre><code class="language-php">&gt; take tinker
+&gt; composer require laravel/tinker</code></pre>
+<p>Next, as tinker is a Symphony console command I created a new file to create the app and include the tinker command.</p>
+<pre><code class="language-php">#!/usr/bin/env php
+&lt;?php
+
+use Laravel\Tinker\Console\TinkerCommand;
+
+require __DIR__.'/vendor/autoload.php';
+
+$tinkerCommand = new TinkerCommand();
+
+$app = new Symfony\Component\Console\Application('Tinker');
+
+$app-&gt;add($tinkerCommand);
+
+$app-&gt;run();</code></pre>
+<p>Ok, we expect something to break but lets run it and see what happens.</p>
+<pre><code class="language-php">&gt; ./tinker tinker</code></pre>
+<p>Call to member function call() on null.
+Let's see what the command is doing...</p>
+<pre><code class="language-php">/**
+ * Execute the console command.
+ *
+ * @return void
+ */
+public function handle()
+{
+    $this-&gt;getApplication()-&gt;setCatchExceptions(false);
+
+    $config = new Configuration([
+        'updateCheck' =&gt; 'never'
+    ]);
+
+    $config-&gt;getPresenter()-&gt;addCasters(
+        $this-&gt;getCasters()
+    );
+
+    $shell = new Shell($config);
+    $shell-&gt;addCommands($this-&gt;getCommands());
+    $shell-&gt;setIncludes($this-&gt;argument('include'));
+
+    $path = $this-&gt;getLaravel()-&gt;basePath('vendor/composer/autoload_classmap.php');
+
+    $loader = ClassAliasAutoloader::register($shell, $path);
+
+    try {
+        $shell-&gt;run();
+    } finally {
+        $loader-&gt;unregister();
+    }
+}</code></pre>
+<p>So were Setting some options, config etc.. Then we create a new Shell, a path from the laravel app... And this is where I thought, If all this is doing is creating a new Psy/Shell and configuring some stuff to work with Laravel, why don't I just use Psy/Shell.</p>
+<p>A quick look at psysh.org and I can install Psy/Shell with composer</p>
+<pre><code class="language-php">&gt; composer g require psy/psysh:@stable</code></pre>
+<p>Now anywhere I can run <code>&gt; psysh</code> and I have a php repl.  Now compairing to the experience above.</p>
+<pre><code class="language-php">psysh
+&gt;&gt;&gt; md5('a')
+=&gt; "0cc175b9c0f1b6a831c399e269772661"
+// That just worked</code></pre>
+<p>So psysh assumed I wanted to see the output, and it even assumed I wanted to execute the code I wrote. Both of which were true.</p>
+<p>All of that song and dance to figure out that since I've installed psysh now all I have to do is type <code>&gt; psysh</code> in my terminal and I'm good to so.</p>
+            </div>
+        </div>
+    </div>
+        <div class="card">
+        <div class="card-content">
+            <p class="title">
+                <a href="/posts/git-update-fork-and-branches">Git Update Fork and Branches</a>
+            </p>
+            <p class="subtitle">
+                By Jeff Finley
+            </p>
+            <div class="content">
+                <p>So I forked and repo on github to address some issues.</p>
+<p>I have 3 branches with changes. One branch was merged and the other 2 I've not created PR's for yet.
+So I want the changes from the branch that was just merged to be reflected in the other 2 branches. Let's ignore the fact that in this particular case there was no good reason to do this as there was no overlapping code changes.</p>
+<p>So the first thing is to get master updated.</p>
+<pre><code># Add the remote, call it "upstream":
+
+git remote add upstream https://github.com/whoever/whatever.git
+
+# Fetch all the branches of that remote into remote-tracking branches,
+# such as upstream/master:
+
+git fetch upstream
+
+# Make sure that you're on your master branch:
+
+git checkout master
+
+# Rewrite your master branch so that any commits of yours that
+# aren't already in upstream/master are replayed on top of that
+# other branch:
+
+git rebase upstream/master</code></pre>
+<p>Now that my master is up to date, I can switch to any branch I want and do the same.</p>
+<pre><code>git checkout branch
+
+git rebase origin/master</code></pre>
+<p>Good times.</p>
+            </div>
+        </div>
+    </div>
+        <div class="card">
+        <div class="card-content">
+            <p class="title">
+                <a href="/posts/global-gitignore">Creating a Global .gitignore</a>
+            </p>
+            <p class="subtitle">
+                By Jeff Finley
+            </p>
+            <div class="content">
+                <p>I primarilly used Sublime Text as my editor of choice, but when I hack on a open source project that I am not familiar with, I reach for PHPStorm so I can more easily explore and jump around the code base. Since this has been pretty infrequent, I've been caught with the .idea directory in a commit/pr a few times.</p>
+<p>I could just not commit it of course. Or I could add it to the projects .gitignore file, but then I have to commit that change and as it is unrealted to the current work I'd create a new commit/pr for just that change, then wait for the maintainer to merge it then update from the upstream/master, etc... No Fun! I though there must be a better way, so i googled it and what do you know, there is.</p>
+<p>Enter the global .gitignore.</p>
+<p>My search lead me right to the github help page that describes making a global .gitignore file.
+<a href="https://help.github.com/articles/ignoring-files/#create-a-global-gitignore">https://help.github.com/articles/ignoring-files/#create-a-global-gitignore</a></p>
+<p>There are 2 simple steps:</p>
+<ol>
+<li>Create a file. I went with the recommendation of ~/.gitignore_global</li>
+<li>Run command <code>git config --global core.excludesfile ~/.gitignore_global</code></li>
+</ol>
+<p>That's it.</p>
+<p>As for what to put in the file github has a repo with all sorts of good options. Rather than looking at the example linked in the help page: <a href="https://gist.github.com/octocat/9257657">https://gist.github.com/octocat/9257657</a>, I suggest looking at the repo they have with all sorts of templates: <a href="https://github.com/github/gitignore">https://github.com/github/gitignore</a>.</p>
+<p>I started right with <code>.idea/</code> and then added the items from the macOS.gitignore template.</p>
+<p>While this solves my specific use case, I'd still recommend adding all items to the projects .gitignore that are appropriate for your project/team.</p>
+            </div>
+        </div>
+    </div>
+                </div>
+        </div>
+
+        <footer class="footer">
+          <div class="container">
+            <div class="content has-text-centered has-text-white">
+                <p>© 2017 <a href="http://quickliketurtle.com"><strong>Jeff Finley<strong></a></p>
+            </div>
+          </div>
+        </footer>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </body>
+</html>
