@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+gulp --production
+./vendor/bin/jigsaw build production
+
+echo "<?php header( 'Location: /index.html' ) ;  ?>" > build_production/index.php
+
+git add build_production
+git commit -m "Build for deploy"
+
+git subtree push --prefix build_production heroku master
