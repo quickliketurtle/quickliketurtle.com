@@ -10,7 +10,7 @@ elixir(function(mix) {
     var env = argv.e || argv.env || 'local';
     var port = argv.p || argv.port || 3000;
 
-    mix.sass('app.sass')
+    mix.exec('./node_modules/.bin/tailwind build ./source/_assets/css/app.css -c ./tailwind.js -o ./source/css/app.css')
         .exec(bin.path() + ' build ' + env, ['./source/*', './source/**/*', '!./source/_assets/**/*'])
         .browserSync({
             port: port,
@@ -19,4 +19,3 @@ elixir(function(mix) {
             files: [ 'build_' + env + '/**/*' ]
         });
 });
-
