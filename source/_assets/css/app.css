@@ -1,3 +1,16 @@
 @tailwind preflight;
 
 @tailwind utilities;
+
+.markdown p {
+    @apply .text-grey-darker;
+    @apply .mt-4;
+}
+
+.markdown a {
+    @apply .text-green;
+}
+
+.markdown pre {
+    @apply .mt-4;
+}

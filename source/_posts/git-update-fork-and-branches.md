@@ -13,7 +13,7 @@ So I want the changes from the branch that was just merged to be reflected in th
 
 So the first thing is to get master updated.
 
-```
+```bash
 # Add the remote, call it "upstream":
 
 git remote add upstream https://github.com/whoever/whatever.git
@@ -37,7 +37,7 @@ git rebase upstream/master
 
 Now that my master is up to date, I can switch to any branch I want and do the same.
 
-```
+```bash
 git checkout branch
 
 git rebase origin/master
