@@ -4479,6 +4479,12 @@ button,
   z-index: auto;
 }
 
+.list-inside {
+  list-style: none;
+  padding: 0;
+  list-style: inside;
+}
+
 .markdown p {
   color: #606f7b;
   margin-top: 1rem;
