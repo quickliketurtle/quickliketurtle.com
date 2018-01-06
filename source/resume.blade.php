@@ -24,7 +24,7 @@
                     <ul class="list-reset">
                         <li class="text-grey-darkest font-bold">YMCA of Silicon Valley</li>
                         <li class="text-grey-darker">Santa Clara, Ca</li>
-                        <li class="text-grey-darker">Aug 2008 - Present</li>
+                        <li class="text-grey-darker">Aug 2008 - Jan 2017</li>
                     </ul>
                 </div>
 
